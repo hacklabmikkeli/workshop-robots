@@ -21,13 +21,13 @@ servo_width = 40;
 servo_length = 35;
 servo_height = 20;
 
-servo_spread = 1;
-servo_pos = 22;
+servo_spread = 3;
+servo_pos = 20;
 
 wheel_diameter = 56;
 wheel_thickness = 5;
-wheel_offset = 10;
-wheel_pos = 22;
+wheel_offset = 12;
+wheel_pos = 20;
 
 support_wheel_height = 30;
 support_wheel_width = 10;
