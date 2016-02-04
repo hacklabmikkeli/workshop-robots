@@ -1,12 +1,12 @@
 
 body_thickness = 2;
-body_width = 70;
+body_width = 66;
 body_length = 100;
 
 raspi_width = 56;
 raspi_length = 85.6;
 raspi_height = 21;
-raspi_base = 10;
+raspi_base = 1;
 
 raspi_holes = [
     [24.5, 39],
@@ -21,20 +21,20 @@ servo_width = 40;
 servo_length = 35;
 servo_height = 20;
 
-servo_spread = 5;
-servo_pos = 4;
+servo_spread = 1;
+servo_pos = 22;
 
-wheel_diameter = 40;
+wheel_diameter = 56;
 wheel_thickness = 5;
+wheel_offset = 10;
+wheel_pos = 22;
 
 support_wheel_height = 30;
 support_wheel_width = 10;
 support_wheel_thickness = 30;
 support_wheel_pos = 50;
 
-linear_extrude(
-    height = 2
-) {
+module body_shape() {
     difference() {
         scale([body_width, body_length])
             square(1, center = true);
@@ -45,17 +45,38 @@ linear_extrude(
     }
 }
 
+translate([0,0,-servo_height - body_thickness])
+    linear_extrude(
+        height = 2
+    ) {
+        body_shape();
+    }
+
+linear_extrude(
+    height = 2
+) {
+    body_shape();
+}
+
+translate([raspi_width/2 + wheel_thickness + wheel_offset, wheel_pos, -body_thickness - servo_height/2])
+    rotate([0, 90, 0])
+        color("grey")
+            cylinder(h=wheel_thickness, r=wheel_diameter/2, center=true);
+translate([-raspi_width/2 - wheel_thickness - wheel_offset, wheel_pos, -body_thickness - servo_height/2])
+    rotate([0, 90, 0])
+        color("grey")
+            cylinder(h=wheel_thickness, r=wheel_diameter/2, center=true);
 translate([raspi_width/2, -raspi_length/2, body_thickness+raspi_base])
     rotate([0,0,90])
         color("green")
             import("raspberrypi2.stl");
 translate([-servo_spread, servo_pos, -(servo_height/2)])
-    scale([10, 10, 10])
+    scale([10, -10, 10])
         rotate([0,90,90])
             color("blue")
                 import("standardservo.stl");
 translate([servo_spread, servo_pos, -(servo_height/2)])
-    scale([-10, 10, 10])
+    scale([-10, -10, 10])
         rotate([0,90,90])
             color("blue")
                 import("standardservo.stl");
