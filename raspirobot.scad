@@ -23,12 +23,12 @@ servo_width = 40;
 servo_length = 35;
 servo_height = 20;
 
-servo_spread = 2;
+servo_spread = 0.5;
 servo_pos = 20;
 
 wheel_diameter = 56;
 wheel_thickness = 5;
-wheel_offset = 13;
+wheel_offset = 11.5;
 wheel_pos = 20;
 
 support_wheel_height = 30;
@@ -70,32 +70,45 @@ module spacer(hole_pos) {
     }
 }
 
+module spacer1() {
+    spacer(2);
+}
+
+module spacer2() {
+    spacer(1.9);
+}
+
 translate([-24.5, -17, -servo_height/2])
     color("pink")
-        spacer(2);
+        spacer1();
 
 translate([24.5, -17, -servo_height/2])
     color("pink")
-        spacer(2);
+        spacer1();
+
+
+translate([-24.5, 37, -servo_height/2])
+    scale([1, -1, 1])
+        color("pink")
+            spacer2();
 
 translate([24.5, 37, -servo_height/2])
     scale([1, -1, 1])
         color("pink")
-            spacer(1.9);
+            spacer2();
 
-translate([0,0,-servo_height - body_thickness])
+module body() {
     linear_extrude(
         height = 2
     ) {
         body_shape();
     }
-
-linear_extrude(
-    height = 2
-) {
-    body_shape();
 }
 
+translate([0,0,-servo_height - body_thickness])
+    body();
+
+body();
 
 translate([
     raspi_width/2 + wheel_thickness + wheel_offset,
