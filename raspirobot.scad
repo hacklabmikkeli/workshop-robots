@@ -1,6 +1,6 @@
 body_roundedness = 4;
 
-body_thickness = 2;
+body_thickness = 3;
 body_width = 65;
 body_length = 100;
 
@@ -28,13 +28,15 @@ servo_pos = 20;
 
 wheel_diameter = 56;
 wheel_thickness = 5;
-wheel_offset = 13;
+wheel_offset = 12.5;
 wheel_pos = 20;
 
-support_wheel_height = 30;
-support_wheel_width = 10;
-support_wheel_thickness = 30;
-support_wheel_pos = 50;
+support_wheel_radius =
+      wheel_diameter/2
+    - servo_height/2
+    - body_thickness/2;
+    
+support_wheel_pos = -30;
 
 module body_shape() {
         difference() {
@@ -49,6 +51,33 @@ module body_shape() {
                 translate(hole)
                     circle(d=raspi_hole_size, $fn=30);
             }
+    }
+}
+
+
+module body() {
+    linear_extrude(
+        height = body_thickness
+    ) {
+        body_shape();
+    }
+}
+
+module support_wheel() {
+    difference() {
+        sphere(r=support_wheel_radius, $fa=1);
+        translate([
+            0,
+            0,
+            support_wheel_radius
+        ])
+        scale([
+            2*support_wheel_radius,
+            2*support_wheel_radius,
+            2*support_wheel_radius
+        ])
+            cube(center=true);
+        
     }
 }
 
@@ -78,6 +107,16 @@ module spacer2() {
     spacer(1.9);
 }
 
+
+translate([
+    0,
+    support_wheel_pos,
+    -(servo_height + body_thickness)
+])
+    color("white")
+        support_wheel();
+
+
 translate([-24.5, -17, -servo_height/2])
     color("pink")
         spacer1();
@@ -97,13 +136,6 @@ translate([24.5, 37, -servo_height/2])
         color("pink")
             spacer2();
 
-module body() {
-    linear_extrude(
-        height = 2
-    ) {
-        body_shape();
-    }
-}
 
 translate([0,0,-servo_height - body_thickness])
     body();
