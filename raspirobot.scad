@@ -23,12 +23,12 @@ servo_width = 40;
 servo_length = 35;
 servo_height = 20;
 
-servo_spread = 0.5;
+servo_spread = 2;
 servo_pos = 20;
 
 wheel_diameter = 56;
 wheel_thickness = 5;
-wheel_offset = 11.5;
+wheel_offset = 13;
 wheel_pos = 20;
 
 support_wheel_height = 30;
@@ -63,10 +63,10 @@ module spacer(hole_pos) {
             #cylinder(h=servo_height+12, d=raspi_hole_size, center=true, $fn=36);
         translate([0, 3.2, -5.1])
             rotate([0, 90, 0])
-                cylinder(h=8, d=5.1, center=true, $fn=36);
+                cylinder(h=8, d=3, center=true, $fn=36);
         translate([0, 3.2, 5.1])
             rotate([0, 90, 0])
-                cylinder(h=8, d=5.1, center=true, $fn=36);
+                cylinder(h=8, d=3, center=true, $fn=36);
     }
 }
 
