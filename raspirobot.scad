@@ -23,12 +23,12 @@ servo_width = 40;
 servo_length = 35;
 servo_height = 20;
 
-servo_spread = 2;
+servo_spread = 6;
 servo_pos = 20;
 
 wheel_diameter = 56;
 wheel_thickness = 5;
-wheel_offset = 12.5;
+wheel_offset = 16.5;
 wheel_pos = 20;
 
 support_wheel_radius =
@@ -83,19 +83,23 @@ module support_wheel() {
 
 module spacer(hole_pos) {
     difference() {
-        scale([5.2, 12, servo_height])
-            cube(center=true);
-        translate([0, -8, 0])
-            scale([8, 18, servo_height - 4])
+        translate([-2, 0, 0])
+            scale([9, 12, servo_height])
+                cube(center=true);
+        translate([-2, -8, 0])
+            scale([10, 18, servo_height - 4])
                 cube(center=true);
         translate([0, -hole_pos, 0])
             #cylinder(h=servo_height+12, d=raspi_hole_size, center=true, $fn=36);
         translate([0, 3.2, -5.1])
             rotate([0, 90, 0])
-                cylinder(h=8, d=3, center=true, $fn=36);
+                cylinder(h=20, d=3, center=true, $fn=36);
         translate([0, 3.2, 5.1])
             rotate([0, 90, 0])
-                cylinder(h=8, d=3, center=true, $fn=36);
+                cylinder(h=20, d=3, center=true, $fn=36);
+        translate([1, 5, 0])
+            scale([4, 8.05, servo_height])
+                cube(center=true);
     }
 }
 
@@ -123,7 +127,8 @@ translate([-24.5, -17, -servo_height/2])
 
 translate([24.5, -17, -servo_height/2])
     color("pink")
-        spacer1();
+        scale([-1,1,1])
+            spacer1();
 
 
 translate([-24.5, 37, -servo_height/2])
@@ -132,7 +137,7 @@ translate([-24.5, 37, -servo_height/2])
             spacer2();
 
 translate([24.5, 37, -servo_height/2])
-    scale([1, -1, 1])
+    scale([-1, -1, 1])
         color("pink")
             spacer2();
 

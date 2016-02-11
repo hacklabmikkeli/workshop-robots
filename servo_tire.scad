@@ -1,5 +1,5 @@
 difference() {
-    cylinder(d=44, h=2.5, center=true);
-    cylinder(d=42, h=1, center=true);
-    cylinder(d=40, h=3, center=true);
+    cylinder(d=44.5, h=3.5, center=true);
+    cylinder(d=42.5, h=2, center=true);
+    cylinder(d=38.5, h=4, center=true);
 }
