@@ -17,7 +17,7 @@ raspi_holes = [
     [-24.5, -19]
 ];
 
-raspi_hole_size = 3.7;
+raspi_hole_size = 4.5;
 
 servo_width = 40;
 servo_length = 35;
