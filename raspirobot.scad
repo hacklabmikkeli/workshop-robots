@@ -17,7 +17,7 @@ raspi_holes = [
     [-24.5, -19]
 ];
 
-raspi_hole_size = 4.5;
+raspi_hole_size = 4.2;
 
 servo_width = 40;
 servo_length = 35;
@@ -93,10 +93,10 @@ module spacer(hole_pos) {
             #cylinder(h=servo_height+12, d=raspi_hole_size, center=true, $fn=36);
         translate([0, 3.2, -5.1])
             rotate([0, 90, 0])
-                cylinder(h=20, d=3.7, center=true, $fn=36);
+                cylinder(h=20, d=4.2, center=true, $fn=36);
         translate([0, 3.2, 5.1])
             rotate([0, 90, 0])
-                cylinder(h=20, d=3.7, center=true, $fn=36);
+                cylinder(h=20, d=4.2, center=true, $fn=36);
         translate([1, 7, 0])
             scale([10, 8.05, servo_height])
                 cube(center=true);
