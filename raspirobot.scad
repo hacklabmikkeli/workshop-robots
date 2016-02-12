@@ -108,7 +108,12 @@ module spacer1() {
 }
 
 module spacer2() {
-    spacer(1.9);
+    union() {
+        spacer(1.9);
+        translate([-4.2,3.5,0])
+            sphere(r=1, $fn=36);
+    }
+    
 }
 
 
