@@ -84,10 +84,10 @@ module support_wheel() {
 module spacer(hole_pos) {
     difference() {
         translate([-2, 0, 0])
-            scale([9, 12, servo_height])
+            scale([11, 10, servo_height])
                 cube(center=true);
         translate([-2, -8, 0])
-            scale([10, 18, servo_height - 4])
+            scale([12, 18, servo_height - 4])
                 cube(center=true);
         translate([0, -hole_pos, 0])
             #cylinder(h=servo_height+12, d=raspi_hole_size, center=true, $fn=36);
@@ -97,19 +97,22 @@ module spacer(hole_pos) {
         translate([0, 3.2, 5.1])
             rotate([0, 90, 0])
                 cylinder(h=20, d=3.7, center=true, $fn=36);
-        translate([1, 5, 0])
+        translate([1, 7, 0])
             scale([10, 8.05, servo_height])
+                cube(center=true);
+        translate([1, 3, 0])
+            scale([10, 8.05, servo_height-4])
                 cube(center=true);
     }
 }
 
 module spacer1() {
-    spacer(2);
+    spacer(1);
 }
 
 module spacer2() {
     union() {
-        spacer(1.9);
+        spacer(0.9);
         translate([-4.2,3.5,0])
             sphere(r=1, $fn=36);
     }
@@ -126,22 +129,22 @@ translate([
         support_wheel();
 
 
-translate([-24.5, -17, -servo_height/2])
+translate([-24.5, -17.5, -servo_height/2])
     color("pink")
         spacer1();
 
-translate([24.5, -17, -servo_height/2])
+translate([24.5, -17.5, -servo_height/2])
     color("pink")
         scale([-1,1,1])
             spacer1();
 
 
-translate([-24.5, 37, -servo_height/2])
+translate([-24.5, 38, -servo_height/2])
     scale([1, -1, 1])
         color("pink")
             spacer2();
 
-translate([24.5, 37, -servo_height/2])
+translate([24.5, 38, -servo_height/2])
     scale([-1, -1, 1])
         color("pink")
             spacer2();
@@ -185,7 +188,7 @@ translate([
     servo_pos,
     -(servo_height/2)
 ])
-    scale([10, -10, 10])
+    scale([10, -9.9, 10])
         rotate([0,90,90])
             color("blue")
                 import("standardservo.stl");
@@ -194,7 +197,7 @@ translate([
     servo_pos,
     -(servo_height/2)
 ])
-    scale([-10, -10, 10])
+    scale([-10, -9.9, 10])
         rotate([0,90,90])
             color("blue")
                 import("standardservo.stl");
