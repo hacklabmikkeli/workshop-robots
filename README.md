@@ -18,7 +18,7 @@ The required files can be prepared by running `build.sh`.
  - 16 M3 bolts
  - A tiny furniture wheel to use as a support wheel
 
-Build instructions:
+## Build instructions:
 
 ![Instructions #1](instructions_0.png)
 
