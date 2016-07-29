@@ -3,7 +3,7 @@ CAD files and software for robots for use in workshops.
 # Raspirobot
 A simple raspberry pi powered robot programmed using Scratch
 
-![raspirobot](https://i.imgur.com/Bo91QDh.png)
+![raspirobot](raspirobot.png)
 
 ## Bill of materials
 
